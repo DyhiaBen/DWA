@@ -1,0 +1,53 @@
+<html>
+  <script src="https://unpkg.com/vue"></script>
+<title> TEST JS </title> 
+
+<body>
+
+<input class="sync" type="text"></input>
+<input class="sync" type="text"></input>
+<input class="sync" type="text"></input>
+<div id="monApp" style="width: 200px; height: 200px;" v-bind:style="couleurMsg" >
+<span>{{ leMsg }}</span>
+<button v-on:click="reverseMessage">Message retourné</button>
+<button v-on:click="colorChange">Changer La Couleur</button>
+</div>
+<script>
+var nouvelleValeur;
+var changertous=function(nouvelleValeur){
+	document.querySelectorAll(".sync").forEach((e)=>{
+		e.value = nouvelleValeur;
+	});
+};
+
+document.querySelectorAll(".sync").forEach((e)=>{
+      e.addEventListener("keypress",(event)=> {
+ 	
+changertous(event.target.value);
+
+      });
+});
+
+
+
+var vm=new Vue({
+el: "#monApp",
+data: {
+	leMsg:"OUSSeMA/DYHIA",
+  couleurMsg: {'background-color': 'red'}
+},
+ methods: {
+    reverseMessage: function () {
+      this.leMsg = this.leMsg.split('').reverse().join('')
+    },
+   colorChange: function() {
+    this.couleurMsg={'background-color': 'green'}
+   }
+}
+}	);
+
+</script>
+
+</body>
+
+</html>
